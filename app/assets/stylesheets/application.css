@@ -15,24 +15,24 @@
  */
 
 .container {
-  width: 400px;
-  margin: 20px auto;
+ width: 400px;
+ margin: 20px auto;
 }
 
 body {
-  font-family: Verdana, sans-serif;
-  font-size: 14px;
+ font-family: Verdana, sans-serif;
+ font-size: 14px;
 }
 
 h2 {
-  font-size: 16px;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #ddd;
+ font-size: 16px;
+ padding-bottom: 10px;
+ margin-bottom: 15px;
+ border-bottom: 1px solid #ddd;
 }
 
 ul > li {
-  margin-bottom: 5px;
+ margin-bottom: 5px;
 }
 
 .logo {
@@ -60,4 +60,8 @@ textarea {
   font-size: 12px;
   font-weight: bold;
   color: tomato;
+}
+
+.command {
+  font-size: 12px;
 }
