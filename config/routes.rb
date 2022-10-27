@@ -8,10 +8,15 @@ Rails.application.routes.draw do
 
   root 'posts#index'
   
+  # ユーザ―関連
+  post "users/:id/update" => "users#update"
   get "users/:id/edit" => "users#edit"
   post "users/create" => "users#create"
   get "signup" => "users#new"
   get "users/index" => "users#index"
   get "users/:id" => "users#show"
+
+  # ログイン・ログアウト関連
+  get "login" => "users#login_form"
 
 end
