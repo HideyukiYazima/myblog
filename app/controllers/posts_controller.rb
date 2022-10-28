@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-
-  # Convention over Configuration (CoC)
+# before_actionにauthenticate_userメソッドを指定してください
+before_action :authenticate_user
 
   def index
     @posts = Post.all.order(created_at: 'desc')
@@ -15,10 +15,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    # render plain: params[:post].inspect
-    # save
-    # @post = Post.new(params[:post])
-    # @post = Post.new(params.require(:post).permit(:title, :body))
     @post = Post.new(post_params)
     if @post.save
       # redirect
