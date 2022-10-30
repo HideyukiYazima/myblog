@@ -7,7 +7,9 @@ before_action :authenticate_user
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
+    # 変数@userを定義してください
+    @user = User.find_by(id: @post.user_id)
   end
 
   def new
@@ -15,13 +17,16 @@ before_action :authenticate_user
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(
+      content: params[:content],
+      # user_idの値をログインしているユーザーのidにしてください
+      user_id: @current_user.id
+    )
     if @post.save
-      # redirect
-      redirect_to posts_path
+      flash[:notice] = "投稿を作成しました"
+      redirect_to("/posts/index")
     else
-      # render plain: @post.errors.inspect
-      render 'new'
+      render("posts/new")
     end
   end
 
