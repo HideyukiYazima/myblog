@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/top'
   get 'users/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -7,6 +8,9 @@ Rails.application.routes.draw do
   end
 
   root 'posts#index'
+
+  get "/" => "home#top"
+
   
   # ユーザ―関連
   post "users/:id/update" => "users#update"
