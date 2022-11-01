@@ -1,26 +1,24 @@
-<h2><%= @post.title %></h2>
-<p><%= simple_format @post.body %></p>
-
-<h3>Comments</h3>
-<% if @post.comments.any? %>
-<ul>
-<% @post.comments.each do |comment| %>
-<li>
-  <%= comment.body %>
-  <%= link_to '[x]',
-    post_comment_path(@post, comment),
-    method: :delete,
-    class: 'command',
-    data: { confirm: 'Sure?' } %>
-</li>
-<% end %>
-</ul>
-<% end %>
-<%= form_for([@post, @post.comments.build]) do |f| %>
-<p>
-  <%= f.text_field :body %>
-</p>
-<p>
-  <%= f.submit %>
-</p>
-<% end %>
+<div class="main posts-show">
+  <div class="container">
+    <div class="posts-show-item">
+      <div class="post-user-name">
+        <img src="<%= "/user_images/#{@user.image_name}" %>">
+        <%= link_to(@user.name, "/users/#{@user.id}") %>
+      </div>
+      <p>
+        <%= @post.content %>
+      </p>
+      <div class="post-time">
+        <%= @post.created_at %>
+      </div>
+      <!-- 以下の<% %>を使ってif文を追加してください -->
+      <% if @post.user_id == @current_user.id %>
+        <div class="post-menus">
+          <%= link_to("編集", "/posts/#{@post.id}/edit") %>
+          <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
+        </div>
+      <!-- 以下の<% %>を使ってif文のendを追加してください -->
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,19 @@
-<h2>
-  <%= link_to 'Add New', new_post_path, class: 'header-menu' %>
-  My Posts
-</h2>
-<ul>
-<% @posts.each do |post| %>
-<li>
-<%= link_to post.title, post_path(post) %>
-<%= link_to '[Edit]', edit_post_path(post), class: 'command' %>
-<%= link_to '[x]',
-  post_path(post),
-  method: :delete,
-  class: 'command',
-  data: { confirm: 'Sure?' } %>
-</li>
-<% end %>
-</ul>
+<div class="main posts-index">
+  <div class="container">
+    <% @posts.each do |post| %>
+      <div class="posts-index-item">
+        <div class="post-left">
+          <!-- ユーザーの画像が表示されるように、以下のsrcに値を追加してください -->
+          <img src="<%= "/user_images/#{post.user.image_name}" %>">
+        </div>
+        <div class="post-right">
+          <div class="post-user-name">
+            <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成してください -->
+            <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+          </div>
+          <%= link_to(post.content, "/posts/#{post.id}") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

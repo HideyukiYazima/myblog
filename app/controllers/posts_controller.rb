@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-# before_actionにauthenticate_userメソッドを指定してください
 before_action :authenticate_user
+before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
   def index
     @posts = Post.all.order(created_at: 'desc')
@@ -8,8 +8,7 @@ before_action :authenticate_user
 
   def show
     @post = Post.find_by(id: params[:id])
-    # 変数@userを定義してください
-    @user = User.find_by(id: @post.user_id)
+    @user = @post.user
   end
 
   def new
